@@ -1,5 +1,6 @@
 resource "aws_glue_crawler" "template" {
   database_name = var.database_name
+  schedule      = "cron(0 * * * ? *)"
   name          = var.crawler_name
   role          = var.iam_role_arn
 
@@ -8,12 +9,3 @@ resource "aws_glue_crawler" "template" {
   }
 }
 
-# resource "aws_glue_trigger" "example" {
-#   name     = "example"
-#   schedule = "cron(15 12 * * ? *)"
-#   type     = "SCHEDULED"
-
-#   actions {
-#     job_name = aws_glue_job.example.name
-#   }
-# }
